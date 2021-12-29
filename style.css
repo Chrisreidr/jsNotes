@@ -1,0 +1,103 @@
+body {
+  background-color: #c3e0e0;
+  margin: 0;
+}
+
+li {
+  margin: 10px auto;
+}
+
+hr {
+  border: dotted #96c4eb 6px;
+  border-top: none;
+  width: 4%;
+  margin: 50px auto;
+}
+
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  width: auto;
+}
+
+.body {
+  margin: 10px 50px;
+}
+
+.boxes {
+  border: solid 3px rgb(138, 122, 122);
+  border-radius: 3px;
+  margin: 10px;
+  padding: 5px;
+}
+
+.center {
+  text-align: center;
+}
+
+.home {
+  background-color: gray;
+  padding-top: 0;
+}
+
+.move_down {
+  margin-bottom: 30px;
+}
+
+.navbar {
+  list-style-type: none;
+  margin: 0;
+  padding: 8px 10px 8px 0;
+  margin-bottom: 50px;
+  background-color: rgb(190, 178, 178);
+  border: 1px solid black;
+}
+
+.navlist {
+  display: inline;
+  padding: 8px;
+  font-weight: bold;
+}
+
+.navlist,
+a:link,
+a:visited {
+  color: blue;
+}
+
+.navlist,
+a:hover {
+  color: black;
+}
+
+.type-box {
+  border: 5px solid black;
+  border-radius: 5px;
+  padding: 15px;
+  width: 400px;
+}
+
+.shrink_img {
+  max-width: 60%;
+  max-height: 60%;
+}
+
+.space_down {
+  margin-bottom: 50px;
+}
+
+#type-container {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+/* Loops page */
+
+#for-loop {
+  border: 5px rgb(158, 147, 147) solid;
+  border-radius: 5px;
+}

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Strings</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h3><a href="index.html">Home</a></h3>
+    <h3><a href="fundamentals.html">Fundamentals</a></h3>
+    <h1 class="center">Strings</h1>
+    <p class="center">
+      <u
+        >Strings are primitives and impossbile to mutate. The results of any
+        methods used will have to be stored in a variable or data structure.
+        These methods can be called on one another as long as the result of the
+        previous method is a string.</u
+      >
+    </p>
+    <h3 class="center">String Methods</h3>
+    <p class="center">
+      <u><strong>Example:</strong> const str = "Chris likes programming!";</u>
+    </p>
+    <ul>
+      <li>
+        <strong>str.length // 24</strong> - Used to find the amount of
+        characters in a string.
+      </li>
+      <li>
+        <strong>str.indexOf('r') // 2</strong> - Returns the position of the
+        first occurence of a certain letter or entire word in the string. Keep
+        in mind strings are 0-based and spaces count as a position as well.
+        Entries are case-sentitive.
+      </li>
+      <li>
+        <strong>str.lastIndexOf('r') // 16</strong> - Similar to indexOf()
+        except it returns the position of the last occurence of the stated
+        character or entire word.
+      </li>
+      <li>
+        <strong>str.slice(0) // 'C'</strong> - Takes one parameter to extract
+        the string beginning at that position or a beginning and end paramter to
+        extract a portion of characters.
+      </li>
+      <li>
+        <strong>str.toLowerCase() // 'chris likes programming!'</strong> - Takes
+        no arguements and will convert the string it is called on to lowercase
+        letters. Can be called on a variable containing a string or on a string
+        itself.
+      </li>
+      <li>
+        <strong>str.toUpperCase() // 'CHRIS LIKES PROGRAMMING!'</strong> - Takes
+        no arguements and will convert the string it is called on to uppercase
+        letters. Can be called on a variable containing a string or on a string
+        itself.
+      </li>
+      <li>
+        <strong>str.trim() // "Chris likes programming!"</strong> - Used to
+        remove white space at either end of a string. There is also
+        <strong>.trimStart()</strong> and <strong>.trimEnd()</strong>
+      </li>
+      <li>
+        <strong>str.replace('!', '?') // "Chris likes programming?"</strong> -
+        Used to replace one string (first argument) with a sceond string (second
+        argument). Only replaces the first occurence of the string. To replace
+        each occurence use <strong>str.replaceAll()</strong>. Another example
+        includes
+        <strong
+          >str.replace(str[0], str[0].toLowerCase()) // "chris likes
+          programming!"</strong
+        >
+      </li>
+      <li>
+        <strong
+          >str.repeat(3) // "Chris likes programming!Chris likes
+          programming!Chris likes programming!"</strong
+        >
+        - Simply takes the number of times you would like to repeat as an
+        argument.
+      </li>
+      <li>
+        <strong
+          >str.padStart(30, '+') // "++++++Chris likes programming!"</strong
+        >
+        - Adds a number of characters to the string until the string has a
+        certain desired length. The first arguement is the length of the entire
+        string and the second argument is the character used to pad. We can also
+        pad the end by adding
+        <strong
+          >str.padStart(30, '+').padEnd(36, '+') // "++++++Chris likes
+          programming!++++++"</strong
+        >
+      </li>
+      <li>
+        <strong>str.split(' ') // ['Chris', 'likes', 'programming!'];</strong> -
+        Will return an array of elements seperated by the specified argument.
+        Which in this case is a space.
+      </li>
+      <li>
+        <strong
+          >['Chris', 'likes', 'programming!'].join(' ') // "Chris likes
+          programming!";</strong
+        >
+        - The inverse of the .split() method, it will join an array of elements
+        into a string that is separated by the argument passed. Which in this
+        case is a space.
+      </li>
+      <h3 class="center">Boolean Methods</h3>
+      <p class="center">
+        <u
+          >Used whenever we need to make a decision based on the contents of a
+          string, these methods are useful.</u
+        >
+      </p>
+      <li>
+        <strong>str.inludes('likes') // true</strong> - Will return true or
+        false in the string includes the specified aurgument. Is case-sensitive.
+      </li>
+      <li>
+        <strong>str.startsWith('Chris') // true</strong> - Will return true or
+        false in the string starts with the specified aurgument. Is
+        case-sensitive.
+      </li>
+      <li>
+        <strong>str.endsWith('Chris') // false</strong> - Will return true or
+        false in the string ends with the specified aurgument. Is
+        case-sensitive.
+      </li>
+
+      <h3 class="center">Use-case</h3>
+      <p class="center">
+        <u
+          >A great use-case for these indexs usually occures when needing to
+          etxract a string through specified positions.</u
+        >
+        <li>
+          <strong>str.slice(6) // likes programming!</strong> - The slice method
+          needs indexes as arguements which dictates where the extraction will
+          start. The result <u>"likes programming"</u> is referred to as a
+          sub-string. But does not change the initial string.
+          <br />
+        </li>
+        <li>
+          <strong>str.slice(6, 11) // likes</strong> - We can also specify and
+          ending parameter. The method will stop extracting just before the
+          specified end parameter.
+          <br />
+          <em
+            >Note: the length of the extracted string will always be the
+            specified end minus the beginning parameter. Meaning the length in
+            this case is <strong>5</strong></em
+          >
+          <br />
+          First word -
+          <strong>str.slice(0, str.indexOf(' '));</strong>
+          <br />
+          Last word -
+          <strong>str.slice(str.lastIndexOf(' '));</strong>
+        </li>
+      </p>
+      <li>
+        <strong>str.slice(-1) // !</strong> - We can also specify negative
+        values. They will start counting backwards.
+      </li>
+      <li>
+        <strong>str.slice(-11, -1) // programming</strong> - Can also specify a
+        negative beginning ang ending value.
+      </li>
+    </ul>
+
+    <script src="script.js"></script>
+    <script>
+      /////////////////////////////////////////////////////////////////////////
+
+      // STRINGS
+
+      // Function using string methods in function to check middle seat of plane
+
+      const checkSeat = function (seat) {
+        const seatLetter = seat.slice(-1);
+        seatLetter == "B" || seatLetter == "E"
+          ? console.log("Middle Seat")
+          : console.log("End Seat");
+      };
+
+      checkSeat("3B");
+      checkSeat("11A");
+      checkSeat("13E");
+
+      //Capitalize name
+
+      const capitalizeName = function (name) {
+        const names = name.split(" ");
+        const namesUpper = [];
+        for (const el of names) {
+          const capitalize =
+            el.slice(0, 1).toUpperCase() + el.slice(1).toLowerCase();
+          namesUpper.push(capitalize);
+        }
+        console.log(namesUpper.join(" "));
+      };
+
+      capitalizeName("CHRiS rodriguez kaItE engLAnd");
+
+      // Check email
+
+      const emailCorrect = "chrisreidr@gmail.com";
+      const loginEmail = "  ChrisReidR@gmAil.Com \n";
+
+      const checkEmail = function (email) {
+        const normalEmail = email.toLowerCase().trim();
+        emailCorrect == normalEmail
+          ? console.log("Enter")
+          : console.log("Try again...");
+      };
+      checkEmail(loginEmail);
+
+      // Check baggage
+
+      const checkBaggage = function (items) {
+        const lower = items.toLowerCase();
+        lower.includes("knife") || lower.includes("gun")
+          ? console.log("Whoa there buddy")
+          : console.log("Welcome aboard!");
+      };
+
+      checkBaggage("I have some Food and a pocket Knife");
+      checkBaggage("Just socks and my phone");
+      checkBaggage("I need my gun for protection");
+
+      // Split and join
+      console.log("a+very+nice+string".split("+"));
+      // ['a', 'very', 'nice', 'string']
+      console.log("Chris Rodriguez".split(" "));
+      // ['Chris', 'Rodriguez']
+
+      // Mask a credit Card
+
+      const maskCreditCard = function (number) {
+        const str = number + "";
+        const last = str.slice(-4);
+        console.log(last.padStart(str.length, "*"));
+      };
+
+      maskCreditCard(4749504735242829);
+      maskCreditCard(7543648495855758);
+      maskCreditCard(123456789);
+    </script>
+  </body>
+</html>

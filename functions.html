@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Functions</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <ul class="navbar">
+      <li class="navlist home"><a href="index.html">Home</a></li>
+      <li class="navlist">
+        <a href="#call_apply_bind">call, apply, bind Methods</a>
+      </li>
+      <li class="navlist">
+        <a href="#reg_vs_arrow">Regular Functions vs Arrow Functions</a>
+      </li>
+    </ul>
+    <div class="body">
+      <h1 class="center">Functions</h1>
+      <p class="center"><u>A look into the functions and their use cases</u></p>
+      <h2 class="center">Default Paramters</h2>
+      <p class="center">
+        Default parameters allows values to be used in a function if no values
+        or undefined is passed. The can contain any expression or value of other
+        parameters we set before it (does not work with parameters set after)
+        <strong>(function add(a, b = 1 + a))</strong>. These arguments cannot be
+        skipped as we call the function. If we want to skip one of the
+        parameters we can simply add <strong>undefined</strong> to return the
+        default value for that position.
+        <br />
+        <img
+          src="images/functionImages/default parameters.png"
+          alt="default parameters example"
+        />
+        <br />
+      </p>
+      <h2 class="center">
+        How Passing Arguements Works: <a href="fundamentals.html">Value</a> vs.
+        <a href="fundamentals.html">Reference</a>
+      </h2>
+      <ul>
+        <li>
+          <strong>Primitive Type:</strong> Passing a primitive type into a
+          function is the same as creating a copy outside of the function
+        </li>
+        <li>
+          <strong>Reference Type:</strong> When we pass a reference type into a
+          function, what is copied is a <u>reference</u> to the object in the
+          <a href="fundamentals.html">memory heap</a> (memory address of the
+          object) but they both point to the same object in the
+          <a href="fundamentals.html">memory heap</a>
+        </li>
+      </ul>
+      <p>
+        <strong>Note:</strong> Javascript does not have
+        <u>passing by reference</u> only <u>passing by value</u>. Languages such
+        as C++ you can pass a reference to any value instead of the value
+        itself. It works with primitives, for example. You can pass a reference
+        to the value of 5 and then the value of the original value outside of
+        the function would be changed. This is referred to as
+        <u>pass by reference</u>. Javascript does not have pass by reference.
+        Even though we do pass a reference for objects, it is a reference to the
+        object itself which is still a value. It is simply a value that contains
+        a memory address.
+        <strong
+          >Meaning we pass a reference to the function but we do not pass by
+          reference.</strong
+        >
+      </p>
+      <br />
+
+      <h2 class="center">First-Class vs. Higher-Order Functions</h2>
+      <ul>
+        <li>
+          <strong>First-Class Functions: </strong>JavaScript treats functions
+          first-class as <strong>first-class citizens</strong> meaning that they
+          can be treated as values. This is possible because functions are
+          treated as another type of object in JavaScript. Since objects are
+          values, so are functions. Which means we can store them in variables,
+          object properties, or pass them as arguements into other functions
+          like adding event listeners or event handlers to DOM objects. We can
+          also return functions from other functions. Since they are objects, we
+          can call methods on them as well such as the
+          <strong>bind()</strong> method.<br />
+          <strong>Note: </strong>First class functions are a feature that a
+          programming language either has or does not have. Simply means that
+          functions are treated as values. There are no first-class functions in
+          practice, only conept. While higher-order functions are used in
+          practice which are possible because the language supports first-class
+          functions.
+        </li>
+        <br />
+        <li>
+          <strong>Higher-Order Functions: </strong>A function that either
+          receives another function as an argument or a function that returns a
+          new function.<strong>Accepting callback function:</strong> A function
+          that accepts other functions as an input. The benefits include giving
+          us the ability to split up our code into more reusable and
+          interconnected parts. They also allows us to create
+          <strong><a href="fundamentals.html">abstractions</a></strong>
+          <ul>
+            <li>
+              <strong>Receives another function: </strong> addEventListeners
+              receive another function (event handlers) as an input making it a
+              higher-order function. The event handler is a
+              <strong>callback function</strong> because it will be called later
+              by the higher-order function.
+            </li>
+            <img
+              src="images/functionImages/callback function ex.png"
+              alt="callback function example"
+            />
+            <li>
+              <strong>Functions returning funtions: </strong>Used primarily in
+              functional progrmming, functions are able to receive an argument
+              then return another function with its own argument.
+            </li>
+            <img
+              src="images/functionImages/receive functions ex.png"
+              alt="receive functions example"
+            />
+          </ul>
+        </li>
+      </ul>
+
+      <hr />
+
+      <h2 class="center">
+        <strong id="call_apply_bind">The call, apply, and bind Methods</strong>
+      </h2>
+      <p class="center">
+        Functions are simply objects and objects can have methods, meaning
+        functions can also have methods.
+      </p>
+      <img
+        src="images/functionImages/call and apply method ex.png"
+        alt="call and apply method example"
+      />
+      <ul>
+        <li>
+          <strong>call(): </strong>The first arguement is the exact object we
+          want the <strong>.this</strong> keyword to point to. Then include the
+          remaing arguements of the function in the order they would normally
+          appear. In the example below, the <strong>call()</strong> method will
+          call the <strong>book</strong> function. with the
+          <strong>.this</strong> keyword set to the
+          <strong>eurowings</strong> object. Which is passed as the first
+          arguement as the call method. Allowing us to manually and explicitly
+          set the this keyword to any function we want to call.<br />
+          <strong>Note: </strong> The property names need ot have the same
+          format as the original object for this to work. Because this method is
+          trying to read the same property names.
+          <img
+            src="images/functionImages/call method ex.png"
+            alt="call method example"
+          />
+        </li>
+        <li>
+          <strong>apply method: </strong>The apply method does the same thing as
+          the call method except that it does not receive a list of arguements
+          after the <strong>this</strong> keyword. But will instead take an
+          array of the arguements. With the first arguement being the object the
+          <strong>.this</strong> keyword points to and the second arguement
+          being the array containing the elements needing to be passed.
+          <br />
+          <strong>Note: </strong> This method is not used often in modern
+          Javascript. Can instead used the call() method with the spread
+          operator. See example below:
+        </li>
+        <img
+          src="images/functionImages/apply method ex.png"
+          alt="apply method example"
+        />
+      </ul>
+      <h2 class="center">Bind Method</h2>
+      <p class="center">
+        Similar to the <strong>call()</strong> method the bind method also
+        allows us to manually set <strong>.this</strong> keywords to any
+        function call. The difference being that <strong>bind()</strong> does
+        not call the function immediatly. It instead returns a new funtion where
+        the <strong>.this</strong> keyword is bound. Meaning it is set to
+        whatever value we pass into <strong>bind()</strong>.
+      </p>
+      <img
+        src="images/functionImages/bind method ex.png"
+        alt="bind method example"
+      />
+      <p class="center">
+        <strong>Note: </strong>Like in the call method, we can pass multiple
+        arguements besides the <strong>.this</strong> keyword. Then those
+        arguments will also be set in stone. So that whenever the function is
+        called it will be called with those same arguments. For example, we can
+        use the <strong>bind()</strong> method to create a function for one
+        specific airline and flight number. In the example below we set the
+        flight number in the function, and only require the name to be passed.
+        Specifying parts of an argument beforehand like this is a common pattern
+        referred to as <strong>partial application</strong>. Meaning that a part
+        of the arguments of the original function are already applied.
+      </p>
+      <img
+        src="images/functionImages/bind method partial application ex.png"
+        alt="bind method partial application example"
+      />
+      <h3 class="center">bind() Method Use Cases</h3>
+      <ol>
+        <li>
+          <strong>When using objects together with event listeners:</strong> In
+          the example below, we add a new property and method to the lufthansa
+          object. That will add a new plane each time we click a button. Since
+          the <strong>.this</strong> keyword points to the what the event
+          listener is attached to, the button in this case, and not the object.
+          We have to bind the <strong>.this</strong> keyword to that object
+          first. In this case, lufthansa.
+        </li>
+        <img
+          src="images/functionImages/bind method event listener ex.png"
+          alt="bind method event listener example"
+        />
+        <li>
+          <strong>Using partial application: </strong>Means that we can preset
+          parameters. In the example below we create a function that adds tax to
+          some value. Using 10% of 200. If the value added tax rate (VAT) is 23%
+          we can use the bind method to ensure the tax rate remains 23%. Since
+          the first arguement of the bind method is the
+          <strong>.this</strong> keyword but we don't have an object to point
+          to, we can instead use the value of <strong>null</strong> in its
+          place. Then we can call the function stored with addVAT with the
+          preset tax rate of <strong>23%</strong> and only pass in the value of
+          <strong>200</strong> to get the total amount of <strong>246</strong
+          ><br />
+          <strong>Note: </strong> Keep in mind that the order of arguments
+          matters. So the specified tax rate must be in that position for it to
+          function properly. We are essentially creating a more specific funtion
+          <strong>addVAT()</strong> based on a general function
+          <strong>addTax</strong>. The second example shows the same answer but
+          using a function to return another function instead of the bind()
+          method.
+        </li>
+        <img
+          src="images/functionImages/bind method partial application ex.png"
+          alt="bind method partial application example"
+        />
+        <img
+          src="images/functionImages/bind method partial app & return function ex.png"
+          alt="bind method partial application and return"
+        />
+      </ol>
+      <hr />
+      <h2 class="center">Immediatly Invoked Function Expressions (IIFE)</h2>
+      <p class="center">
+        A function design to only be executed once. Simply wrap a function in
+        paranthese without storing it in a variable, then call it by add an
+        empty set of paranthese after the function.<br />
+        This is not a feature but a pattern in Javascript. Variables within
+        these functions are encapsulated (privately stored in these functions)
+        and are unable to be accessed in the global scope. Scopes are a good
+        tool for doing this and a reason why IIFE were invented. It will become
+        progressively more important with
+        <strong>object oriented programming</strong>.<br />
+        Variables declared with let or const also create their own scope inside
+        a block.
+      </p>
+      <img src="images/functionImages/iife ex.png" alt="iife example" />
+      <h2 class="center">Closures</h2>
+      <p class="center">
+        Closures are not a feature that we excplicitly use. We do not create
+        them manually like an array or function. A closure happens automatically
+        in certain situations.
+      </p>
+
+      <h2 class="center" id="reg_vs_arrow">
+        Regular Functions vs Arrow Functions
+      </h2>
+    </div>
+  </body>
+  <script src="script.js"></script>
+  <script>
+    // Default Paramters
+
+    const bookings = [];
+
+    const createBooking = function (flightNum, numPassengers = 10, price = 30) {
+      const booking = {
+        flightNum,
+        numPassengers,
+        price,
+      };
+      console.log(booking);
+      bookings.push(booking);
+    };
+
+    createBooking("LHS132", 15, 40);
+    //{flightNum: 'LHS132', numPassengers: 15, price: 40}
+
+    // Skip default parameter
+
+    createBooking("LHS132", undefined, 80);
+    //{flightNum: 'LHS132', numPassengers: 10, price: 80}
+
+    // How passing arguments Works: Value vs. Reference
+
+    const flight = "LHS132";
+
+    const chris = {
+      name: "Chris Rodriguez",
+      passport: 123456789,
+    };
+
+    const checkedIn = function (flightNum, passenger) {
+      flightNum = "RTG546";
+      passenger.name = "Mr. " + passenger.name;
+      //manipulating the passenger object here is the same as manipulating the chris object. Because they are both the same object in the memory heap
+
+      if (passenger.passport === 123456789) {
+        console.log("Checked in!");
+      } else {
+        console.log("Wrong passport...");
+      }
+    };
+
+    checkedIn(flight, chris);
+
+    console.log(flight);
+    // LHS132
+    console.log(chris);
+    // {name: 'Mr. Chris Rodriguez', passport: 123456789}
+
+    // is the same as doing...
+    const flightNum = flight;
+    const passenger = chris;
+
+    // CALLBACK FUNCTIONS
+
+    const oneWord = function (str) {
+      return str.replace(/ /g, "").toLowerCase();
+    };
+
+    const upperFirstWord = function (str) {
+      const [first, ...others] = str.split(" ");
+      return [first.toUpperCase(), ...others].join(" ");
+    };
+
+    // Higher-order Function
+
+    const transformer = function (str, fn) {
+      console.log(`Original string: ${str}`);
+      console.log(`Transformed string: ${fn(str)}`);
+      console.log(`Transformed by: ${fn.name}`);
+    };
+
+    transformer("JavaScript is pretty cool!", upperFirstWord);
+    transformer("JavaScript is pretty cool!", oneWord);
+
+    // JS we use callback functions all of the time
+    const high5 = function () {
+      console.log("✋");
+    };
+
+    document.body.addEventListener("click", high5);
+
+    // RECEIVE FUNCTIONS
+
+    const greet = function (greeting) {
+      return function (name) {
+        console.log(`${greeting} ${name}`);
+      };
+    };
+
+    const greeterHey = greet("Hey");
+
+    greeterHey("Chris");
+    // Hey Chris
+    greeterHey("Gavin");
+    // Hey Gavin
+
+    // The first function, greet('Hey'), returned a new function that we stored in the variable, greeterHey. Meaning that variable is now a function we can call. We can also call the original function and use the second argument to receive the other function.
+
+    greet("Hello")("Katie");
+    // Hello Katie
+
+    // Arrow Function
+    const arrowGreet = (greeting) => (name) =>
+      console.log(`${greeting} ${name}`);
+
+    arrowGreet("Yo")("Clooney");
+    // Yo Clooney
+
+    // CALL AND APPLY METHOD
+
+    const lufthansa = {
+      airline: "Lufthansa",
+      iataCode: "LM",
+      bookings: [],
+      book(flightNum, name) {
+        console.log(
+          `${name} booked a flight on ${this.airline} flight ${this.iataCode}${flightNum}`
+        );
+        this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
+      },
+    };
+
+    lufthansa.book(946, "Gavin Rodriguez");
+    // Gavin Rodriguez booked a flight on Lufthansa flight LM946
+    lufthansa.book(351, "Katie Rodriguez");
+    // Katie Rodriguez booked a flight on Lufthansa flight LM351
+    console.log(lufthansa);
+    // {airline: 'Lufthansa', iataCode: 'LM', bookings: Array(2), book: ƒ}
+    // bookings: Array(3)
+    // 0: {flight: 'LM946', name: 'Gavin Rodriguez'}
+    // 1: {flight: 'LM351', name: 'Katie Rodriguez'}
+
+    const eurowings = {
+      airline: "Eurowings",
+      iataCode: "EW",
+      bookings: [],
+    };
+
+    const book = lufthansa.book;
+    // Does NOT work
+    // book(23, 'Chris Rodriguez')
+
+    book.call(eurowings, 23, "Sam Winchester");
+    // Sam Winchester booked a flight on undefined flight EW23
+    console.log(eurowings);
+    // bookings: Array(1)
+    // 0: {flight: 'EW23', name: 'Sam Winchester'}
+
+    book.call(lufthansa, 693, "Ask Ketchum");
+    // Ask Ketchum booked a flight on Lufthansa flight LM693
+    console.log(lufthansa);
+    // bookings: Array(3)
+    // 2: {flight: 'LM693', name: 'Ask Ketchum'}
+
+    const swiss = {
+      airline: "Swiss",
+      iataCode: "LX",
+      bookings: [],
+    };
+
+    book.call(swiss, 123, "Clooney Scribbles");
+    // Clooney Scribbles booked a flight on Swiss flight LX123
+    console.log(swiss);
+    // bookings: Array(1)
+    // 0: {flight: 'LX123', name: 'Clooney Scribbles'}
+
+    // APPLY METHOD
+
+    const flightData = [263, "George Weasley"];
+    book.apply(swiss, flightData);
+    // George Weasley booked a flight on Swiss flight LX263
+
+    // Same as method above
+    book.call(swiss, ...flightData);
+    // George Weasley booked a flight on Swiss flight LX263
+
+    console.log(swiss);
+    // bookings: Array(2)
+    // 0: {flight: 'LX123', name: 'Clooney Scribbles'}
+    // 1: {flight: 'LX263', name: 'George Weasley'}
+
+    // BIND METHOD
+    // book.call(eurowings, 23, 'Sam Winchester')
+
+    const bookEW = book.bind(eurowings);
+    const bookLX = book.bind(swiss);
+    const bookLM = book.bind(lufthansa);
+
+    bookEW(32, "Dean Winchester");
+    // Dean Winchester booked a flight on Eurowings flight EW32
+    bookLX(562, "John Smith");
+    // John Smith booked a flight on Swiss flight LX562
+    bookLM(642, "Stephen Hawking");
+    // Stephen Hawking booked a flight on Lufthansa flight LM642
+
+    const bookEW23 = book.bind(eurowings, 23);
+    bookEW23("Chris Rodriguez");
+    // Chris Rodriguez booked a flight on Eurowings flight EW23
+    bookEW23("Martha Cooper");
+    // Martha Cooper booked a flight on Eurowings flight EW23
+
+    // With Event Listeners
+
+    //         lufthansa.planes = 300;
+    //         lufthansa.buyPlane = function() {
+    // console.log(this);
+
+    //             this.planes++;
+    //             console.log(this.planes);
+    //         }
+
+    //         document.querySelector('.buy').addEventListener('click', lufthansa.buyPlane.bind(lufthansa));
+
+    // Partial application
+
+    const addTax = (tax, value) => value + value * tax;
+    console.log(addTax(0.1, 200));
+    // 220
+
+    const addVAT = addTax.bind(null, 0.23);
+    // same as
+    // addVAT = value => value + value * 0.23;
+
+    console.log(addVAT(200));
+    // 246
+
+    ////////////////////////////////////////////////////////////////////
+
+    // Same answer but using one function to return another function
+
+    const taxReturn = function (taxRateReturn) {
+      return function (valueReturn) {
+        console.log(+`${valueReturn + taxRateReturn * valueReturn}`);
+      };
+    };
+
+    const taxReturn23 = taxReturn(0.23);
+
+    taxReturn23(200);
+    // 246
+
+    //     const reTax = function (taxRateRe) {
+    //         return function (valueRe) {
+    //             console.log(`The tax rate is ${taxRateRe} and the value is ${valueRe} meaning the total is ${valueRe + valueRe * taxRateRe}`);
+    //         }
+    //     }
+    // const totalRe = reTax(.23);
+
+    // totalRe(200);
+
+    // Regular function
+
+    const runOnce = function () {
+      console.log("This will never run again");
+    };
+    runOnce();
+
+    // IIFE
+
+    (function () {
+      console.log("This will never run again");
+      const isPrivate = 23;
+    })();
+
+    // IIFE arrow function
+
+    (() => console.log("This will ALSO never run again"))();
+
+    {
+      const isPrivate = 23;
+      var notPrivate = 46;
+    }
+
+    //console.log(isPrivate);
+    // undefined
+    console.log(notPrivate);
+    // 46
+
+    const add24 = (tax) => (value) => console.log(value + value * tax);
+
+    const price = add24(0.3);
+
+    price(2.99);
+
+    // CLOSURE
+    const secureBooking = function () {
+      let passengerCount = 0;
+
+      return function () {
+        passengerCount++;
+        console.log(`${passengerCount} passengers`);
+      };
+    };
+
+    const booker = secureBooking();
+
+    // REGULAR FUNCTIONS VS ARROW FUNCTION
+    const katie = {
+      firstName: "Katie",
+      birthYear: 1991,
+      calcAge: function () {
+        console.log(this);
+        console.log(2022 - this.birthYear);
+        const millenial = function () {
+          console.log(this.birthYear >= 1981 && this.birthYear <= 1996);
+        };
+        millenial();
+      },
+      greet: () => console.log(`Hey ${this.firstName}`),
+    };
+    katie.calcAge(); // 31
+    katie.greet(); // undefined
+  </script>
+</html>

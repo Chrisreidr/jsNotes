@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fundamentals</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+      <ul class="navbar">
+        <li class="navlist home"><a href="index.html">Home</a></li>
+        <li class="navlist"><a href="#runtime&engine">Runtime & Engine</a>
+        </li>
+        <li class="navlist"><a href="#execution_context">Execution Context</a></li>
+        <li class="navlist"><a href="#scope">Scope & Scope Chain</a></li>
+        <li class="navlist"><a href="#variable_environment">Variable Environment</a></li>
+        <li class="navlist"><a href="#this">this Keyword</a></li>
+      </ul>
+    
+    <div class="body">
+    <h1 class="center">Fundamentals</h1>
+
+    <h2 class="center">A Hig-Level Overview of Javascript</h2>
+    <p class="center">
+      Javascript is a High-Level, Prototype-Based Object-Oriented,
+      Multi-Paradigm, Interpreted of Just-In-Time Compiled, Dynamic,
+      Single-Threaded, Garbage Collected Programming Language with First-Class
+      functions and a non-blocking Event Loop Concurrency Model
+    </p>
+    <ul>
+      <li>
+        <strong>High-Level:</strong> Every program running on a computer needs
+        some hardware resources, such as memory and the CPU to work. There are
+        low-level languages, such as C, where you have to manually manage these
+        resources. For example, asking the computer for memory to create a new
+        variable. While high-level languages such as JavaScript and Python where
+        we do not have to manage these resources because they have
+        <u>abstractions</u> which do this automatically. Which makes it easier
+        to use, but also means they will never be as fast or as optimized as
+        programs using low-level languages. One of the powerful tools that takes
+        memory management away from developers is
+        <strong>garbage-collection</strong>.
+      </li>
+      <li>
+        <strong>Garbage-Collected:</strong> An algorithm inside the JavaScript
+        engine which automatically removes old, unused objects from the computer
+        memory to avoid clogging it up with unecessary stuff. So that we do not
+        have to do it manually in our code.
+      </li>
+      <li>
+        <strong>Interpreted or Just-in-time Compiled Language:</strong> A
+        computers processor only understands binary code (1's and 0's). Meaning
+        that every program needs to be written in binary a.k.a.
+        <u>machine code</u>. We simply write human-readable JavaScript code,
+        which is an <u>abstraction</u> over <u>machine code</u>. But this code
+        eventually needs to be translated into <u>machine code</u> which can
+        either be done via <strong>compiling</strong> or
+        <strong>interpreting</strong>. This step is necessary in every
+        programming language because no one writes machine code manually. In the
+        case of Javascript, this happens in the JavaScript engine.
+      </li>
+      <li>
+        <strong>Multi-Paradigm Language:</strong> In programming, a paradigm is
+        an approach and overall mindset of structuring code, which will direct
+        your coding style and technique in a project that uses a certain
+        paradigm. While many languages are either procedural, object-oriented,
+        or funtional, JavaScript does all of it. Making it flexible and
+        versatile. We can essntially use whichever paradigm we want.<br />
+        Paradigms can be classified as <u>Imperative</u> or <u>Declerative</u>:
+        <ul>
+          <li><strong>Imperative:</strong></li>
+          <li><strong>Declerative:</strong></li>
+        </ul>
+        <br />
+        Three popular paradigms include:
+        <ol>
+          <li>
+            <strong>Procedural Programming:</strong> Is what we have been doing
+            so far which is organizing the code in a very linear way with some
+            functions in between.
+          </li>
+          <li><strong>Object-Oritented Programming (OOP):</strong></li>
+          <li><strong>Functional Programming (FP):</strong></li>
+        </ol>
+      </li>
+      <li>
+        <strong>Prototype-Based Object-Oriented Approach:</strong> Aside from
+        primitive values, nearly everything in Javascript is an object. We can
+        for example, create an array and use the <strong>.push()</strong> method
+        on it because of <strong>prototypal inheritance </strong>. We can
+        basically create arrays from an array "blueprint" which is like a
+        template, and is called the <strong>prototype</strong>. This
+        <strong>prototype</strong> contains all of the array methods. Then the
+        arrays in our code inherit these methods from the "blueprint" so that we
+        can use them on the arrays.
+        <em
+          >This is an oversimplification that will be explained later in
+          Obeject-oriented Programming</em
+        >.
+      </li>
+      <li>
+        <strong>First-Class Functions:</strong> In JavaScript, functions can be
+        treated as regular variables. Meaning we can pass them into other
+        functions, and return them from other functions. Which allows for
+        powerful techniques and <strong>functional-programming</strong>. Not all
+        languages have first-class functions.
+      </li>
+      <li>
+        <strong>Dynamically-Typed Language:</strong> In JavaScript we do not
+        assign data types to variables. Instead, they only become known when the
+        JavaScript engine executes our code. Also, the type of variables can
+        easily be changed as we reassign the variables. In most other
+        programming languages, we have to manually assign types to variables,
+        which usually prevents bugs from happening. If we would like to use
+        JavaScript with types, then we can use <strong>TypeScript</strong>
+      </li>
+      <li>
+        <strong>Single-Threaded:</strong> Means JavaScript can only do one thing
+        at a time. In computing, a thread is like a set of instructions that is
+        execute in the computers CPU.
+      </li>
+      <li>
+        <strong><a id="event-loop">Non-Blocking Event Loop:</a></strong> A
+        <strong>Concurency Model</strong> is how JavaScript handles multiple
+        tasks happening at the same time. If there is a long-running task like
+        fetching data from a remote server, then it may seem like that would
+        block the single-thread. But this is where we can use an
+        <strong>Event Loop</strong> which takes long-running tasks and executes
+        them in the "background", then places them back into the thread once
+        they are finished.
+      </li>
+    </ul>
+
+    <h3 class="center" id="objectsVsPrimitives">
+      Objects (<u>reference types</u>) and Primitives (<u>primitive types</u>)
+    </h3>
+    <p>
+      In Javascript, every value is either an object or primitive value. Meaning
+      a value is only primitive when it is not an object. The difference between the two being the way they are stored in memory.
+    </p>
+    <div id="primitiveDataTypes">
+      <h4 class="center">Primitive Types</h4>
+      <ul>
+        <li>
+          <strong>Numbers:</strong> Floating point numbers used for decimals and
+          integers. - <u>let age = 30;</u>
+        </li>
+        <li>
+          <strong><a href="strings.html">Strings:</a></strong> Sequence of
+          characters used for text, always in quotation marks (' ') or (" "). -
+          <u>let firstName = 'Chris';</u>
+        </li>
+        <li>
+          <strong>Boolean:</strong> Logical type can only be true or false. Used
+          for taking decisions. - <u>let fullAge = true;</u>
+        </li>
+
+        <li>
+          <strong>Big Int (ES2020):</strong> Larger integers that the
+          <u>Number</u> type cannot hold. Which can be found -
+          <u>console.log(Number.MAX_SAFE_INTEGER) // 9007199254740991</u>
+        </li>
+        <li>
+          <strong>Symbol (ES2015):</strong> A value that is unique and cannot be
+          changed.
+        </li>
+        <li>
+          <strong>Undefined:</strong> Value taken by a variable that is not
+          defined ("empty value"). Also known as a variable declared with no
+          value - <u>let baby;</u>
+        </li>
+        <li>
+          <strong>Null:</strong> Similar to undefined, but it represents the
+          intentional abscence of any object value.
+        </li>
+      </ul>
+      <h4 class="center">Reference Types</h4>
+      <ul><li><strong>Object Literal: </strong>A comma-separated list of name-value pairs wrapped in curly braces. Object literals encapsulate data, enclosing it in a tidy package. This minimizes the use of global variables which can cause problems when combining code.</li>
+      <li><strong>Arrays: </strong>A special variable, which can hold more than one value. This can include primitive values like numbers and strings.</li>
+    <li><strong>Functions: </strong>A a block of code designed to perform a particular task that will be executed once "something" invokes it (calls it)</li>
+  <li><strong>Many more...:</strong></li></ul>
+    </div>
+
+    <p class="center">We also have to remember the JS engine and how it handles <strong>Primitives and Objects</strong>. The engine having two components, <u>the <a href="#callstack_def">Call Stack</a> where primitves are stored (in the execution contexts in which they are declared) while functions are executed and the <a href="#heap_def">Heap</a> where objects are stored in memory.</u></p>
+
+<img src="images/fundamentalsImages/primitives objects javascript engine.png" alt="primitives objects js engine">
+
+<h4 class="center">Example</h4>
+
+<p class="center">What happens in the JavaScript Engine when a variable is declared?</p>
+
+<h5 class="center">Primitive Value Example</h5>
+
+<ol>
+  <li>When creating a variable like <strong>let age = 30</strong> JavaScript will create a <u>unique identifier</u> with the variable name. Then a piece of memory will be allocated with a certain address, in this case, <strong>0001</strong>. The value will then be stored in memory at the specified address. Meaning in this case, that the value of <strong>30</strong> will be stored at the memory address of <strong>0001</strong>.</li>
+  <p><strong>Note:</strong> The identified points to the address and not to the value itself. So even though <strong>let age = 30</strong>, it is more accurate to say that <u><strong>age</strong> is equal to the memory address 0001 which holds the value of <strong>30</strong>.</u></p>
+  <li>In the next line we declare <strong>let oldAge = age;</strong>, meaning it will simply point to the same memory address <strong>0001</strong> as the <strong>age</strong> variable.</li>
+  <li>Once we set the <strong>age = 31</strong>, the value at address <strong>0001</strong> will remain 30 because that would aslo change <strong>oldAge</strong> as well since they both point to the same memory address. Also the value of a certain memory address is immutable. At this point, a new piece of memory is allocated at memory address <strong>0002</strong> where the <strong>age</strong> variable will simply point to the new address with its corresponding value of <strong>31</strong>. Which is why logging both variables produces <strong>console.log(age) // 31</strong> and <strong>console.log(oldAge) // 30</strong></li>
+
+</ol>
+
+<h5 class="center">Reference Values Example 1</h5>
+
+<ol>
+  <li>When a new object is created like the <strong>me</strong> object it is stored in the Heap. And just like before, there is a memory address, then the value itself. In the case of refence values like the <strong>me</strong> object and the <strong>me</strong> identifier does not point directly to the newly created memory address in the heap, <strong>D30F</strong>. Instead, it will point to a new piece of memory that is created in the stack. And this new piece of memory will then point to the object that is in the heap by using te memory address as its value. <u>The piece of memory in the Call Stack has a reference to the memory in the Heap which holds the <strong>me</strong> object. Which is why we call objects <strong>reference types</strong> in this context. It is done this way because objects may be too large to be store in the Call Stack. Instead they are stored in the Heap which is like an unlimited memory pool. The stack simply keeps a refence to where the object is actually stored in the Heap. so that it can find it whenever necessary.</u></li>
+  <li>Creating a new variable called <strong>friend</strong>,  we set equal to the <strong>me</strong> object. Similar to primitive values, the <strong>friend</strong> identifier will point to the exact same memory address as the <strong>me</strong> identifier. That is the address that contains the refence, which then points to the object itself. The <strong>firend</strong> object will essentially be the same as the <strong>me</strong> object.</li>
+  <li>Now we change a property in the <strong>friend</strong> object, the age, to 27. At that point, the object is found in the heap and the 30 is changed to 27. Even though friend was declared with <strong>const</strong> we can still change the value in the heap. Variable declared with <strong>const</strong> are immutable in terms of primitive values but NOT reference values.</li>
+  <li>When logging the <strong>friend</strong> object we can see the age is 27, but logging the original <strong>me</strong> object also shows the value of age being changed to 27. Even though we never changed <strong>me.age</strong> directly. The reason for this is because the objects <strong>me</strong> and <strong>friend</strong> point to the exact same object in the memory heap. So whenever we change something in this object, it will always be reflected in both the <strong>friend</strong> and <strong>me</strong> objects. They are essentially two different identifiers pointing to the same exact value. With that value being the memory address <strong>D30F</strong> which points to the reference in the memory heap.</li>
+  <p><strong>Note:</strong> Whenever you think you are copying an object, you are actually creating a new variable tht points to the exact same object.</p>
+</ol>
+
+<img src="images/fundamentalsImages/primitive vs refence values ex.png" alt="">
+
+<h5 class="center">Reference Values Example 2</h5>
+
+<ol><li>Similar to the previous example, making a copy of <strong>const marriedKatie = katie;</strong> the changing the property for only <strong>marriedKatie.lastName = 'Rodriguez'</strong> will change the property for both objects. Since the reference value is in the Heap, we can change it even though <strong>marriedKatie</strong> is declared with <strong>const</strong>. What we cannot do, is assign the <strong>const</strong> variable <strong>marriedKatie</strong> a new object such as <strong>marriedKatie = {}</strong>. We can only do that if it was declared with <strong>let</strong>.</li>
+<p>As a conclusion, completely changing the object, as in assigning a new object to it, is completely different than simply changing a property like <strong>marriedKatie.lastName = 'Rodriguez'</strong>.</p>
+
+<img src="images/fundamentalsImages/primitives vs objects in practice.png" alt="primitives vs objects in Practice">
+
+<li>To copy the object so we can change it without copying the other, we can use <strong>Object.assign()</strong> to merge <strong>katie2</strong> with a new empty object. then store it in the variable <strong>const kateCopy</strong>. We can then change the property of the newly created object with <strong>katieCopy.lastName = 'Rodriguez'</strong>. Then log the results.</li>
+<p>We can see that we preserved the last name of</p>
+
+<img src="images/fundamentalsImages/primitives vs objects copy ex.png" alt=""></ol>
+
+    <h3 class="center">Type Conversion vs. Type Coercion</h3>
+    <p class="center">
+      Javascript can only convert three data types, String, Numbers, and
+      Boolean.
+    </p>
+    <div id="type-container">
+      <div class="type-box">
+        <h3 class="center"><strong>Type Conversion</strong></h3>
+        <p>When we manually convert from one data type to the other</p>
+        <p>
+          <u>const inputYear = '1991'</u> =>
+          <u>console.log(Number(inputYear)) // 1991</u>
+        </p>
+        <p>Explicit conversion is triggered by the following funtions:</p>
+        <ul>
+          <li><strong>Strings: </strong>String()</li>
+          <br />
+          <li><strong>Numbers: </strong>Number()</li>
+          <br />
+          <li><strong>Boolean: </strong>Boolean()</li>
+        </ul>
+      </div>
+      <div class="type-box">
+        <h3 class="center"><strong>Type Coercion</strong></h3>
+        <p>
+          Javascript will automatically convert from one data type to the other
+        </p>
+        <ul>
+          <li>
+            <strong>Strings: </strong>Implicit coercion can convert a number
+            into a string by adding an empty string to a number -
+            <strong>console.log(5 + '') // '5'</strong>
+          </li>
+          <br />
+          <li>
+            <strong>Numbers: </strong>Implicit coercion is triggered by the
+            binary operators <strong>(-, /, *)</strong> which will convert
+            string data types into numbers. Implicit coercion is tribber by the
+            binary <strong>+</strong> operator. Which is typically used to
+            convert numbers into strings - <strong>let str = '5';</strong> then
+            <strong>console.log(+str) // 5</strong>
+          </li>
+          <br />
+          <li>
+            <strong>Boolean: </strong>Implicit coercion happens in logical
+            context, or is triggered by logical operators
+            <strong>(||, &&, !)</strong>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <hr>
+
+    <h2 class="center" id="runtime&engine">JavaScript Runtime and Engine</h2>
+    <p class="center">
+      The <strong>JavaScript Engine</strong> is a program that executes
+      JavaScript code. Every browser has its own JavaScript engine, but the most
+      well known engine is Googles <strong>V-Eight</strong> engine which powers
+      google chrome and Node.js which is JavaScript Runtime used to build
+      server-side applications with JavaScript outside of any browser. Every
+      Javascript engine contains a <strong>Callstack</strong> and a
+      <strong>Heap</strong>.
+    </p>
+    <ul>
+      <li>
+        <strong id="callstack_def">Callstack:</strong> Where our code is executed using <a href="#execution-context">execution
+          context</a>.
+      </li>
+      <li>
+        <strong id="heap_def">Heap:</strong> An unstructured memory pool storing all of the
+        objects that our application needs.
+      </li>
+    </ul>
+
+    <h3 class="center">JavaScript Engine</h3>
+
+    <img src="images/fundamentalsImages/javascript engine.png" alt="javascript engine">
+
+    <h3 class="center">
+Compilation vs Interpretation
+    </h3>
+    <p class="center">
+      A computers processor only understands binary code (zeros and ones).
+      Therefore, every single computer program ultimately needs to be converted
+      into machine code. This can happen using <strong>compilation</strong> or
+      <strong>interpretation.</strong> JavaScript used to be an interpreted
+      language but the probleam with interpreted languages is that they are much
+      slower than compiled languages. Modern JavaScript uses a mix between
+      compilation and interpretation called
+      <strong>Just-In-Time (JIT) Compilation</strong> which compiles the entire
+      code into machine code at once, then executes it immediately. Meaning the
+      two steps of regular ahead of time compilation but there is no portable
+      file to execute. And the execution happens immediately after compilation.
+    </p>
+    <img
+      src="images/fundamentalsImages/interpretation vs compilation.png"
+      alt="interpretation vs compilation"
+    />
+
+    <h3 class="center">Just-In-Time Compilation</h3>
+    <p class="center"><strong>Order of events</strong></p>
+    <ol>
+      <li>
+        <strong>Parsing (reading the code):</strong> The code is parsed into a
+        data structure called the <strong>Abstract Syntaxt Tree (AST)</strong>.
+        This works by splitting up each line of code into meaningful parts of
+        the language such as <strong>const</strong> of
+        <strong>function</strong> keywords, then saving all of the pieces into
+        the tree in a structured way. This step also checks for syntax errors.
+        The tree will later be used to generate machine code. Note that the ATS
+        had nothing to do with the DOM tree. It is simply a representation of
+        our entire code inside the engine.
+      </li>
+      <li>
+        <strong>Compilation: </strong>Takes the generated ATS and compiles it
+        into machine code. This machine code will then be executed right away.
+      </li>
+      <li>
+        <strong>Execution: </strong>Occurs within the JavaScript Engines
+        <strong>Callstack</strong>.
+      </li>
+      <li>
+        <strong>Optimization: </strong>Modern JavaScript engines will create a
+        very unoptimized version of machine code in the beginning just so it can
+        start executing as fast as possible. Then in the background, this code
+        is being optimized and recompiled during the already-running program
+        execution. This can be done multiple times after each execution.<br />
+        After each optimization the unoptimized code is simply swept for te new
+        more optimized code without ever stopping execution. The is what makes
+        modern engine like V-Eight so fast.<br />
+        <strong>Note:</strong> All of this parsing, compilation, and
+        optimization happens in some special threads inside the engine that we
+        cannot access from our code. Separate from the main thread running in
+        the <strong>Callstack</strong> executing our own code.
+      </li>
+    </ol>
+    <img
+      src="images/fundamentalsImages/just-in-time compilation.png"
+      alt="just-in-time compilation"
+    />
+
+    <h3 class="center"><strong>JavaScript Runtime</strong></h3>
+    <p class="center">
+      Similar to a large container that has everything we need in order to use
+      JavaScript, in this case, in the browser. 
+      <ul>
+        <li><strong>JavaScript engine</strong>. The heart of any runtime. Without an engine there
+          is no runtime and there is no JavaScipt at all. However, the engine alone
+          is not enough.</li>
+        <li><strong>Web APIs</strong> (everything related to the DOM, timers, even
+          <u>console.log()</u>. They are functionalities provided to the engine but
+          are not actually part of the JavaScript language itself. JavaScript simply
+          gets access to these APIs through the <strong>global window object</strong>.</li>
+        <li><strong>Callback queue:</strong> A data structure that contains all of the callback functions that are ready to be executed. For example, we attach event handler functions to DOM elements like a button to react to certain events. These event handler functions are also called callback functions. As an event happens, like a click, the callback function will be called. <br>
+        <p><strong>How it works behind the scenes:</strong><ol>
+          <li>After the event, the callbackfuntion is put into the callback queue.</li>
+          <li>The when the callstack is empty the callback function is passed to the stack so that it can be executed via the <strong>event loop</strong>. Which takes callbackfunction from the callback queue and puts them in the callstack so that they can be executed.<br>
+          <strong>Note: </strong>This is also how JavaScripts <strong>non-concurency blocking model</strong> is implemented.</li>
+        </ol></p></li>
+      </ul>
+    </p>
+      <img src="images/fundamentalsImages/javascript runtime.png" alt="JavaScript Runtime">
+      
+      <p class="center">JavaScript can also exist outside of the browser, for example, in Node.js. Similar, but since we do not have the browser we do not have <strong>web APIs</strong>. Instead we have multiple C++ bindings and a so called <strong>thread pool</strong>.</p>
+    
+      <img src="images/fundamentalsImages/javascript runtime in node.png" alt="javascript runteim in node.js">
+
+    <hr>
+    
+    
+    <h2 class="center"><strong id="execution_context">Execution Context</strong></h2>
+    <ul>
+      <li id="execution-context"><strong>Execution Context: </strong>Is an abstract concept. Is esstntially an environment in which a piece of JavaScript code is executed. Once our code is compiled, it is then ready to be executed: <ol><li><strong>Global Execution Context: </strong>Code that is not inside any function. In the beginning, only the code outside of a function will be executed. Because functions should only be executed when they are called. <strong>In the example below:</strong> the <strong>const name = 'Jonas'</strong> variable is top-level code and will be executed in the global execution context.</li>
+      <li><strong>Execution of top-level code:</strong> It is a computers CPU processing the machine code that it received. Once the top-level code is executed, then functions can begin to execute as well.</li>
+    <li><strong>Execution of functions and waiting for callbacks:</strong> For each function call a new execution context is created containgin alll the information necessary to run that function. It is the same case for methods as well since they are simply function attached to objects. All of these execution contexts together, make up the <strong>callstack</strong>. When all functions are done executing the engine will keep waiting for callback functions to arrive so that it can execute them. <strong>For example:</strong> a callback function associated with a click event. It is the <a href="#event-loop">event loop</a> who provides these callback functions.</li></ol></li>
+    </ul>
+
+    <p class="center">The content of the execution context: <u>Variable Environment, Scope Chain, this Keyword</u> are all generated in the "creation phase" which happens right before execution. <br>
+    <strong>Note: </strong>execution contexts belonging to arrow functions <strong>DO NOT</strong> get their own arguments keyword or their own this keyword.</p>
+    <ul><li><strong>Variable Environtment: </strong>Where all the variables and function delcarations reside. Along with an arguments object that were passed into the function that the current execution context belongs to. <strong>Note: </strong>Each function gets its own execution context as soon as that function is called. So all of the variables declared inside of a function, will end up in its variable environment. However, a function can also access variables outside of itself because of the <strong>Scope Chain</strong>.</li>
+    <li><strong><a href="#scope">Scope Chain:</a></strong> Consists of references to variables located outside of the current function. To keep track of the scope chain it is stored inside of each execution context. Each context will also get a special variable called the <strong>this</strong> keyword.</li>
+  <li><strong>this Keyword: </strong>A special variable that is created for every execution context (every function). It will take the value (point to) the "owner" of the function in which the <strong>this</strong> keyword is used.</li></ul>
+
+  <img src="images/fundamentalsImages/execution context.png" alt="Execution Context in Detail">
+
+  <h3 class="center"><strong>Example: </strong>How execution contexts are run in the Call Stack</h3>
+
+  <p class="center"><strong>Summary: </strong>Javascript code runs inside of the <strong>Call Stack</strong>. More accurately, Javascript code runs within execution contexts inside of the stack.</p>
+
+  <p><strong>Note: </strong>Javascript has only one thread of execution. And can only do one thing at a time. Meaning that in this example, the <strong>Global Execution Context</strong> and <strong>first()</strong> function stop executing until the <strong>second()</strong> function is finished executing and returns its value. Then the active execution context will go back to the <strong>first ()</strong> function until that is finished executing. Then the actie execution context will become the <strong>Global Execution Context</strong> again. The program will then remain in this state continiously until the execution is completely finished. Like when we close the browser tab or window. Only then, will the <strong>Global Execution Context</strong> be popped off of the stack.</p>
+
+  <img src="images/fundamentalsImages/call stack ex.png" alt="Call Stack Example">
+
+  <hr>
+
+  <h3 class="center" id="scope"><strong><a id="lexical_scoping">Scope and Scope Chain</a></strong></h3>
+  <h5 class="center"><u>Component of Execution Context</u></h5>
+
+  <p class="center">Many scoping concepts may seem the same but there are subtle differences. Below are the terms for <strong>Scoping</strong>, <strong>Lexical Scoping</strong>, <strong>Scope</strong>, and <strong>Scope of Variable</strong>.</p>
+
+  <img class="shrink_img" src="images/fundamentalsImages/scoping concepts.png" alt="Scoping Concepts">
+
+<h4 class="center"><strong>3 Types of Scope</strong></h4>
+
+<ul>
+  <li><strong>Global Scope: </strong>For top-level code. For variable declared outside of any function or block. Theese will be accessbile everywhere in our program in all functions and all blocks.</li>
+  <li><strong>Function Scope: </strong>Each and every function creates a scope. And the variables declared inside that function scope are only accessible inside that function. Also referred to as a <strong>Local Scope</strong> opposed to the <strong>Global Scope</strong>.</li>
+  <li><strong>Block Scope (ES6): </strong>Before ES6 only functions created scopes in JavaScript. Now blocks also create scopes (anything in between curly braces) such as an <strong>if statement</strong> or <strong>for loop</strong>. Similar to <u>let</u> and <u>const</u> variables, function declared inside of a block are only accessible in that block.<br> <strong>Note:</strong> Since ES6 all functions are also Block Scoped (within strict mode).</li>
+</ul>
+
+<img class="shrink_img" src="images/fundamentalsImages/3 types of scope.png" alt="3 Types of Scope">
+
+<h4 class="center"><strong>The Scope Chain</strong></h4>
+
+<p class="center">In the Scope Chain every scope will always have access to the all of the variables from all of its parent scopes (outer scopes). If one scope needs to use a certain variable, but cannot find it in its current scope, it will look up in the Scope Chain and see if it can find a variable in one of the parent scopes. If it can then it will use that variable. If it can't, then it will result in an error. This process is called <strong id="lookup">Variable Lookup</strong>.</p>
+<p><strong>Note:</strong> These variable are not copied from one scope to another. Instead, scopes simply look up in the scope chain until they find a variable that they need and then they use it. This <u>WILL NOT</u> work the other way around. A certin scope will never have access to variables of an inner scope. In the example below, the <strong>first() scope</strong> will never have access to the job variable (<strong>const job = 'teacher'</strong>) in the <strong>second()</strong> scope. One scope can only look up in the scope chain (parent scopes) but not down (child scopes). The <strong>millenial variable</strong> is not declare with <strong>let or const</strong> and is therefore not scoped to just this block. Instead the <strong>millenial</strong> variable is a part of the <strong>first()</strong> scope. <u>Because for variables declared with var, block scopes do not apply</u>. They are <strong>function scoped</strong> not <strong>block scoped</strong>. While <strong>let</strong> and <strong>const</strong> are <strong>block scoped</strong>.
+</p>
+<p class="center">Due to <strong><a href="#lexical_scoping">Lexical Scoping</a></strong>, variables within the <strong>if block scope</strong> do not get access to any variables within the <strong>second() scope</strong> and vice versa since they are considered <strong>sibling scopes</strong>. By the rules of lexical scoping, they do not have access to each others variables. Simply because one is not written inside the other. Again, the scope chain only works upwards and not sideways or downward.</p>
+
+<img src="images/fundamentalsImages/scope chain example.png" alt="">
+
+<h4 class="center"><strong>Scope Chain vs Call Stack</strong></h4>
+
+<p class="center"><u>Example</u></p>
+
+<p><strong>Call Stack: </strong>There are three functions called <strong>first()</strong>, <strong>second()</strong>, and <strong>third()</strong> to make this easier to understand. The <strong>first()</strong> function will call the <strong>second()</strong> function which will call the <strong>third()</strong> function. The Call Stack will have one execution context for each function in the exact order that they were called. Along with the variable environment of each execution context. Which has nothing to do with scope or the scope chain. We re only creating one execution context for each function call and filling it with the variable of that function.</p>
+<ul>
+  <li>The variables available in the global scope are the same ones stored in the variable environment of the global execution context. In the global scope, we also call the <strong>first()</strong> function, which is the reason why we have an execution context for it in the call stack. This function also gets its own scope, which contains all the variables declared inside the function.</li>
+  <li>Due to the <strong><a href="#scope">Scope Chain</a></strong> the first scope also gets access to all of the variables from its parent scope thanks to the Scope Chain. Which is all about the order in which functions are written in the code. But the <strong>Scope Chain</strong> <u>DOES NOT</u> have anything to do with the order in which functions were called (order of execution contexts in the Call Stack). The Scope Chain does get the variable environments from the execution context (shown by red arrows). But the order of function calls is not relevant to the Scope Chain.</li>
+  <li>The <strong>second()</strong> function's scope is equal to its variable environment. Also, it is lexically written within the <strong>first()</strong> function. So it will have access to all of its parent scopes as well. So we can say that the scope chain in a certain scopeis equal to adding together all the variable environments of its parent scopes. This how scope and the scope chain are built in the JavaScript Engine behind the scenes.</li>
+  <li>In the <strong>second()</strong> function we call the <strong>thrid()</strong> function. Which works because the <strong>third()</strong> function is in the scope chain of the <strong>second()</strong> function scope. It is a function in the global scope or global function, therefore, it is accessible everywhere. Which will then create a new scope along with the scope chain as we already know.</li>
+  <li>With the <strong>thrid()</strong> function trying to acess variables <u>d, c, b, and a</u>. The variable <u>d</u> is already defined within the function and a is available in the global scope. JavaScript will perform a <a href="#lookup"></a>variable lookup</li> through the cope chain but will not be able to fin variables <u>b</u> or <u>c</u> because they are both declared in the <strong>first()</strong> and <strong>second()</strong> functions. This is more proof that the order in which functions are called does not affect the scope chain at all. Meaning the <strong>third()</strong> function will product a reference error for those two variables.
+</ul>
+
+<img src="images/fundamentalsImages/scope chain vs call stack.png" alt="scope chain vs call stack">
+
+<img src="images/fundamentalsImages/scope chain summary.png" alt="scope chain summary">
+
+<hr>
+
+<h3 class="center"><strong id="variable_environment">Variable Environment: Hoisting and The TDZ (Temporal dead Zone)</strong></h3>
+<h5 class="center"><u>Component of Execution Context</u></h5>
+
+<p class="center">Hoisting does not work the same for all variable types.</p>
+
+<ul>
+  <li><strong>Function Declrations: </strong>Are hoistied and the initial value in the variable environment is set to the actual function. Meaning we can use function declarations before they are declared in the code. This is because they are stored in the variable environment object, even before the code starts executing. They are always block scoped while in 'strict mode'.</li>
+  <li><strong>var Variables: </strong>Are also hoisted, but unlinke functions, when we try to access var variable before its declared in a code, we do not get the declared value but <u>undefined</u> instead of an error. This behavior is an odd and common source of bugs in JavaScript.</li>
+  <li><strong>let and const Variables: </strong>Are not hoisted. Although technically hoisted, their value is basically set to uninitialized. So there is no value to work with. So in practice, it is as if hoisting was not happening at all. Instead, we say that these variables are placed in a <a href="#tdz">TDZ (temporal Dead Zone)</a> which makes it so we can't access the variables between the beginning of the scopeand the place where the variables are declared. So, if we try to use a <strong>let</strong> or <strong>const</strong> variable before it's declared, we get an error. Also keep in mind that they are <strong>block scoped</strong>. So they exist only in the block in which they were created. All of these factors together is basically the reason why <strong>let</strong> and <strong>const</strong> were first introduced into the language and why we now use them instead of <strong>var</strong> in modern JavaScript.</li>
+  <li><strong>function expressions and arrow funtions: </strong>Hoisting will depend on whether they were created using <strong>var</strong> or <strong>const and let</strong>. Because functions are simply variables. Meaning they behave the same exact way as variables in regard to hoisting. So a function expression or arrow function created with <u><strong>var</strong> is hoisted to undefined.</u> But if created with <strong>let or const</strong> it's not useable before it is declared in a code because of the TDZ (Temporal Dead Zone). Just like normal variables Which is why we cannot use function expressions before we write them in the code, unlike function declarations.</li>
+</ul>
+
+<img src="images/fundamentalsImages/hoisting.png" alt="hoisting">
+
+<h4 class="center"><strong id="tdz">TDZ (Temporal Dead Zone)</strong></h4>
+
+<p class="center">A region of the scope in which the variable is defined, but can't be used in any way.</p>
+
+<p class="center"><u>Example</u></p>
+
+<p class="center">Using the <strong>job</strong> and <strong>x</strong> variable below, if we try to access them in the TDZ it is as if the variable did not even exist. If try to access the <strong>job</strong> variable, we will simply receive a <u>reference error</u> telling us that we cannot access that variable before initialization. If we try to access the <strong>x</strong> variable then we receive a different error stating it is not defined at all. This means that <strong>job</strong> is in the TDZ where it is still initialized but the engine knows that it will eventually be initialized. Because it already read the code before and set the <strong>job</strong> variable in the variable environment to uninitialized. Then when execution reaches the line where the variable is declared, it is removed form the TDZ and is then safe to use.</p>
+<p class=center>Each and every <strong>let</strong> and <strong>const</strong> variable get their own TDZ that starts at the beginning of the scope until the line where it is defined. And the variable is only safe to use after the TDZ.</p> 
+
+<p class="center"><u>Why TDZ and Hoisting?</u></p>
+
+<ul>
+  <li><strong>TDZ: </strong>The TDZ was introduced into ES6 to help prevent and catch errors. The best way to avoid these errors is to simply receive an error when we attempt to access a variable before it is declared. It also makes <strong>const</strong> variables work properly. It should never be reassigned, so it is only assigned when execution actually reaches the declaration. Making it impossible to use the <strong>const</strong> variable before.</li>
+  <li><strong>Hoisting: </strong>Primarily to use function declarations before actual declaration. Because this is essential for for some programming techniques like <strong>mutual recursion</strong>. Also makes the code more readable. The reason it also works for <strong>var</strong> declarations is because that was the only way hoisting could be implemented at the time. The hoisting of <strong>var</strong> variables is a byproduct of hoisting functions. This feature cannot be removed form the language now so we simple use <strong>let</strong> and <strong>const</strong> to work around this.</li>
+</ul>
+
+
+<img src="images/fundamentalsImages/tdz.png" alt="temporal dead zone">
+
+<h4 class="center"><strong>Summary of Best Practices</strong></h4>
+
+<ul>
+  <li>Don't use <strong>var</strong> to declare variables. Use <strong>const</strong> most of the time to declare variables and <strong>let</strong> if you really need to change the variable later</li>
+  <li>To write clean code, declare all of the variables at the top of each scope.</li>
+<li>Always declare your functions first and use them only after the declaration. This applies to all types of functions, even function declarations, which are hoisted. Even if you can use function declarations before you declare them, it is not considered good practice.</li>
+</ul>
+
+<hr>
+
+<h2 class="center" id="this">this Keyword</h2>
+<h5 class="center"><u>Component of Execution Context</u></h5>
+
+<p class="center">There are four different ways in which functions can be called.</p>
+
+<ul>
+  <li><strong>Method: </strong>A function attached to an object. When calling a method, the <u>this</u> keyword inside tht method will simply point to the object in which the method is called. It points to the object calling the method.</li>
+  <li><strong>Simple Function Call: </strong>We can aslo call them as normal functions. Meaning they are not methods which are attached to any object. In this case, the <u>this</u> keyword will simply be undefined. However, this is only valid for "strict mode". When not in "strict mode" it will point to the global object, which in the case of the browser, is the window object. Which can be problematic.</li>
+  <li><strong>Arrow Functions: </strong>While arrow functions are not actually a way of calling functions, its an important kind of function that we need to consider, because arrow functions do not get their own <u>this</u> keyword. Instead, if you use the <u>this</u> keyword in an arrow function it will simply be the <u>this</u> keyword of the surrounding function (the parent function). This is referred to as the <strong>lexical this keyword</strong>, because it simply gets picked up from the outer lexical scope of the arrow function.</li>
+  <li><strong>Event Listener: </strong>If a function is called as an Event Listener, then the <u>this</u> keyword will always point to the DOM element that the handler function is attached to.</li>
+  <li><strong>new, call, apply, bind methods:</strong> 
+  </li>
+</ul>
+
+<p class="center"><strong>Note:</strong> the <u>this</u> keyword will never point to the function in which we are using it. Also, it will never point to the variable environment of the function.</p>
+
+<img src="images/fundamentalsImages/this keyword.png" alt="this keyword example">
+
+<h3 class="center">Regular Functions vs Arrow Functions</h3>
+<p class="center">The <strong>this</strong> keywrod will react differently depending on the type of functions being used.</p>
+
+<ul>
+  <p class="center"><strong>Arrow Function Examples</strong></p>
+  <li><strong>Example 1:</strong> This example will return <u>undefined</u> because an arrow function does not get it's own <strong>this</strong> keyword. It will simply use the <strong>this</strong> keyword from its surroundings (parents scope). Which in this case, is the gloabal scope. The "block" (curly braces {}) within the object does not creat it's own code block because it is not a code block. It is an <strong>object literal</strong>. Simply a way to literally define objects. Meaning everything within the object is still in the global scope, inlcuding the <strong>greet()</strong> method. Meaning the arrow function, that does not have its own <strong>this</strong> keyword, will use the <strong>this</strong> keyword from the global scope. Which in the case of the browser, is the <strong>window object</strong>. So if we try to access a property on the window object that does not exist on a certain object, we do not get an error, but will instead return <strong>undefined</strong>. In this case, the <strong>this</strong> keyword will represent the window object.</li>
+  
+  <img src="images/fundamentalsImages/arrow function undefined ex .png" alt="example of arrow function returning undefined">
+
+  <p><strong>Solution: </strong> If we declare a variable using <strong>var</strong> that will create a property in the window object. Which will then allow the <strong>greet()</strong> function to run since the <strong>this</strong> keyword will be able to access the <strong>firstName</strong> variable in the window object.</p>
+
+  <img src="images/fundamentalsImages/arrow function var ex.png" alt="arrow function example with var">
+
+  <p class="center"><strong>Regular Function Examples</strong></p>
+<li><strong>Example 2: </strong>We can easily use a function expression instead to prevent the mistake with the arrow function returning <strong>undefined</strong> from occurring.</li>
+
+<img src="images/fundamentalsImages/this regular function ex.png" alt="regular funtion expression this Keyword">
+
+<li><strong>Example 3:</strong> We can also have a regular function inside of a method to check if the person is a millenial based on their birth year via the <strong>isMillenial</strong> function. The only issue is that we will get an error that states <strong>cannot read property of year undefined</strong> because the <strong>this</strong> keyword is undefined. This is because <strong>isMillenial</strong> is a regular function call even though it is inside of a method. And the <strong>this</strong> keyword must always be labeled as <strong>undefined</strong> when it is inside of a regular function call. Producing the same result as if the funtion were outside of the method.</li>
+
+<img src="images/fundamentalsImages/regular funtion call this keyword.png" alt="">
+<p><strong>Solution:</strong> Use an arrow function because it does not have it's own this keyword. It will simply use the <strong>this</strong> keyword of its parent scope. Which in this case, is the <strong>calcAge()</strong> method, where the <strong>this</strong> keyword represents the "chris" object.</p>
+
+<img src="images/fundamentalsImages/arrow function solution this keyword.png" alt="arrow function solution this keyword">
+
+</ul>
+
+    <script src="script.js"></script>
+    <script>
+//Scoping In Practice
+/*
+function calcAge(birthYear){
+  const age = 2022 - birthYear;
+  function printAge() {
+    const output = `${firstName}, you are ${age}, born in ${birthYear}` 
+    console.log(`${output}`);
+
+    if(birthYear >= 1981 && birthYear <= 1996) {
+      const str = `Oh, and you\'re a millenial, ${firstName}!`
+      console.log(str);
+    }
+  }
+  printAge();
+  return age;
+} 
+
+const firstName = 'Chris';
+calcAge(1991);
+
+
+// Tempral Dead Zone
+
+// Functions
+
+console.log(addDecl(2,3));
+
+function addDecl(a,b){
+  return a + b;
+}
+
+const addExpr = function(a,b) {
+  return a + b;
+}
+
+const addArr = (a,b) => a + b;
+
+*/
+// this Keyword regular function vs arrow function
+
+
+
+const chris = {
+  firstName: 'Chris',
+  year: 1991,
+  calcAge: function () {
+    console.log(this.year);
+    console.log(2022 - this.year);
+
+    const isMillenial = () => {
+      console.log(this);
+      console.log(this.year >= 1981 && this.year <= 1996);
+    }
+    isMillenial();
+  },
+
+  greet: () => {
+    console.log(this);
+    console.log(`Hey ${this.firstName}`);} ,
+} 
+
+chris.greet(); // Hey Chris
+chris.calcAge(); // 1991, 31, chris object, true
+
+
+// Primitives vs objects in practice
+
+// Primitive Types
+let lastName = 'England'
+let oldLastName = lastName;
+lastName = 'Rodriguez';
+console.log(lastName, oldLastName); // England Rodriguez
+
+//Reference Types
+const katie = {
+  firstName: 'Katie',
+  lastName: 'England',
+  age: 25,
+};
+
+const marriedKatie = katie;
+marriedKatie.lastName = 'Rodriguez';
+console.log('Before marriage:', katie); // Before marriage: {firstName: 'Katie', lastName: 'Rodriguez', age: 25}
+console.log('After marriage:', marriedKatie); // After marriage: {firstName: 'Katie', lastName: 'Rodriguez', age: 25}
+
+// Copying object
+const katie2 = {
+  firstName: 'Katie',
+  lastName: 'Rodriguez',
+  age: 25,
+};
+
+const katieCopy = Object.assign({}, katie2);
+katieCopy.lastName = 'England'
+console.log('Before marriage:', katie2); // Before marriage: {firstName: 'Katie', lastName: 'England', age: 25}
+console.log('After marriage:', katieCopy); // After marriage: {firstName: 'Katie', lastName: 'Rodriguez', age: 25}
+    </script>
+    </div>
+  </body>
+</html>

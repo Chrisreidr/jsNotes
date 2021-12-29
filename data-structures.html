@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Maps</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <ul class="navbar">
+      <li class="navlist home"><a href="index.html">Home</a></li>
+    </ul>
+    <div class="body">
+      <br />
+      <h1 class="center">Data Stuctures</h1>
+
+      <h3 class="center">Sources of Data</h3>
+
+      <ol>
+        <li>
+          <strong>From the program itself:</strong> Data written directly in the
+          source code. Such as status messages that will be displayed on the
+          webpage based on user actions.
+        </li>
+        <li>
+          <strong>From the UI:</strong> Data input from the user interface
+          (webpage) or data written in the DOM
+        </li>
+        <li>
+          <strong>From external sources:</strong> Data fetched for example from
+          a web API (Apllication Programming Interface). Used to get data from
+          other web applications. Usually in the form of JSON, which is
+          esstntially a long sting of text that can be converted to Javascript
+          objects because of the same formatting as Javascript objects and
+          arrays.
+        </li>
+      </ol>
+      <p>
+        There are usually collections of data (conversion rates, movie, recipes,
+        numbers, etc.) that need to be stored somewhere. We store them in one of
+        the four built-in data structures.
+      </p>
+      <h3 class="center">When to use each Data structure</h3>
+      <ul>
+        <h4 class="center">Arrays and Sets</h4>
+        <p>
+          Simple list of values. Simply contain values without any description.
+        </p>
+        <li>
+          <strong>Array:</strong> When you need <strong>ordered</strong> list of
+          values (might contain duplicates) or when the data needs to be
+          manipulated.
+        </li>
+        <li>
+          <strong>Set:</strong> Use with unique values when
+          <strong>high-performance</strong> (10 times faster searching for or
+          deleting an item than arrays) is necessary and to remove duplicates
+          from arrays.
+        </li>
+        <h4 class="center">Objects and Maps</h4>
+        <p>Key value pairs. Keys are used to describing each value</p>
+        <li>
+          <strong>Object:</strong> Used before ES6. Easier to write and access
+          values via the dot (.) and bracket ([]) notations. Use when you need
+          functions (methods) as values are required. Also allows us to use the
+          <strong>.this</strong> keyword to access properties of the same
+          object.<br />
+          Always use function expression as methods in objects and
+          <strong>NOT</strong> arrow functions because it cannot have its own
+          <strong>this</strong> keyword and will returned undefined. But it can
+          inheret the <strong>this</strong> keyword from its parent scope.
+        </li>
+        <li>
+          <strong>Map:</strong> Offer better performance, keys can have any data
+          type, are easy to iterate and compute the size of. Use when you simply
+          need to map values and keys that are not strings
+        </li>
+      </ul>
+      <h1 class="center">Sets</h1>
+      <p>
+        Set objects are collections of values. You can iterate through the
+        elements of a set in insertion order. A value in the Set may only occur
+        once; it is unique in the Set's collection.
+      </p>
+      <h1 class="center">Maps</h1>
+      <p>
+        Maps are data structures used to map values to keys. Like in objects,
+        data is stored in the key value pairs in maps. In objects keys are
+        bascially always strings. While maps can have any type of key including
+        arrays, objects, or other maps.
+      </p>
+      <ul>
+        <li>
+          <strong>const x = new Map()</strong> - Begin by creating an empty map,
+          then simply add the key and value via the set method. It returns the
+          value immediately, meaning you can chain more set method to add
+          multiple keys and values at once.
+        </li>
+        <li>
+          <strong>x.set ()</strong> - Begin by creating an empty map, then
+          simply add the key and value via the set method. It returns the value
+          immediately, meaning you can chain more set method to add multiple
+          keys and values at once.
+        </li>
+        <li>
+          <strong>x.get ()</strong> - We are able to revrieve any value and
+          property from the maps by passing in the name of the key
+        </li>
+        <li>
+          <strong>x.delete ()</strong> - Will delete the key and value from a
+          map of the key specified in the paranthese
+        </li>
+        <li>
+          <strong>x.size ()</strong> - Returns the number of elements in a map
+          object
+        </li>
+        <li><strong>x.clear ()</strong> - Removes all elements from a map</li>
+        <li>
+          <strong>x.values ()</strong> - We are able to revrieve all values from
+          the maps by leaving the paranthese empty
+        </li>
+      </ul>
+      <h2 class="center">Maps: Iteration</h2>
+      <p>
+        We can also create a new map already populated with values by creating
+        an array containing individual arrays with a key and value pair. Which
+        can also be accomplished by calling <strong>Object.entries()</strong> on
+        an object.
+      </p>
+      <p>
+        In order to convert an object to a map, type
+        <strong
+          >const objectToMap = new Map(Object.entries(objectProperty));</strong
+        >
+      </p>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

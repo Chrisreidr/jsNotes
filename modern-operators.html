@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <ul class="navbar">
+      <li class="navlist home"><a href="index.html">Home</a></li>
+    </ul>
+    <div class="body">
+      <h2 class="center">Modern Operators</h2>
+      <h2>Destructuring Assignment</h2>
+      <p>
+        <strong>Definition: </strong>The destructuring assignment syntax is a
+        JavaScript expression that makes it possible to unpack values from
+        arrays, or properties from objects, into distinct variables.
+      </p>
+      <p><strong>Notes</strong></p>
+      <h2>Spread Syntax</h2>
+      <p>
+        <strong>Definition: </strong>Spread syntax (...) allows an iterable such
+        as an array expression or string to be expanded in places where zero or
+        more arguments (for function calls) or elements (for array literals) are
+        expected, or an object expression to be expanded in places where zero or
+        more key-value pairs (for object literals) are expected.
+      </p>
+      <p>
+        <strong>Notes</strong>
+      </p>
+      <p>Used where we would otherwise write values separated by a comma</p>
+      <h2>Rest Parameters</h2>
+      <p>
+        <strong>Definition: </strong>The rest parameter syntax allows a function
+        to accept an indefinite number of arguments as an array, providing a way
+        to represent variadic functions in JavaScript.
+      </p>
+      <p>
+        <strong>Notes</strong>
+      </p>
+      <p>
+        Used where we would otherwise write variable names separated by commas.
+        Not values separated by commas.
+      </p>
+      <br />
+      <h2>Short Curcuiting</h2>
+      <p>
+        <strong>Definition: </strong>In short-circuit evaluation, an expression
+        with logical operators (|| and &&) is evaluated from left to right. So,
+        if the condition is met and the rest of the conditions won’t affect the
+        already evaluated result, the expression will short-circuit and return
+        that result.
+      </p>
+      <p>
+        <strong>Notes</strong>
+      </p>
+      <p>
+        Logical operators can use and return any data type
+        <br />
+        Using the <strong>OR (||)</strong> operator will return the first truthy
+        value in any chain,
+        <strong><u>console.log(undefined || 0 || 3 || 'Chris') // 3</u></strong
+        >. If all values are falsey, then the last value will be returned
+        <strong><u>console.log(undefined || null) // null</u></strong
+        >.
+      </p>
+      <p>
+        Using the <strong>AND (&&)</strong> operator works in the opposite way
+        of the <strong>OR (||)</strong> operator. Where it will short curcuit if
+        the first value is falsy
+        <strong><u>console.log(0 && 'Chris') // 0</u></strong
+        >. If there is no falsy value then the last value is returned. This is
+        because every value of the <strong>AND (&&)</strong> operator must
+        return true for it to return true.
+      </p>
+      <h2>Nullish Caolescing Operator</h2>
+      <p>
+        <strong>Definition: </strong>The nullish coalescing operator (??) is a
+        logical operator that returns its right-hand side operand when its
+        left-hand side operand is null or undefined, and otherwise returns its
+        left-hand side operand.
+      </p>
+      <p>
+        This can be contrasted with the logical OR (||) operator, which returns
+        the right-hand side operand if the left operand is any falsy value, not
+        only null or undefined. In other words, if you use || to provide some
+        default value to another variable foo, you may encounter unexpected
+        behaviors if you consider some falsy values as usable (e.g., '' or 0).
+      </p>
+      <p>
+        The nullish coalescing operator has the fifth-lowest operator
+        precedence, directly lower than || and directly higher than the
+        conditional (ternary) operator.
+      </p>
+      <h1>Objects</h1>
+      <h2>Looping over objects</h2>
+      <p>
+        <strong>Syntax: </strong>Object.keys() method returns an array of a
+        given object's own enumerable property names, iterated in the same order
+        that a normal loop would.
+      </p>
+
+      <p><strong>Notes</strong></p>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
